@@ -28,7 +28,7 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
           </select>
         </div>
         <div class="form__actions">
-          <button class="button button--primary" type="submit">Submit</button>
+          <button class="button button--primary" type="submit" title= "Click to fetch data">Submit</button>
         </div>
       </form>
 
@@ -53,6 +53,10 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
     .form, .chart-card {
       width: 50%;
       margin: 20px 0;
+    }
+
+    .button:hover{
+      background-color: #0056b3;
     }
   `
 })

@@ -21,7 +21,7 @@ import { ConfirmDialogComponent } from "../../../shared/confirm-dialog/confirm-d
         <thead>
           <th>Username</th>
           <th>Email</th>
-          <th>Role</th>
+          <th>Role <span class="required">*</span></th>
           <th>Functions</th>
         </thead>
         <tbody>
@@ -48,6 +48,10 @@ import { ConfirmDialogComponent } from "../../../shared/confirm-dialog/confirm-d
     }
   `,
   styles: `
+  .required{
+    color: red;
+    margin-left: 4px;
+  }
   `
 })
 export class UsersComponent {
