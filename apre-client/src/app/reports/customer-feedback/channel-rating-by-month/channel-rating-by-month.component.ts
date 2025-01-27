@@ -28,7 +28,7 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
           </select>
         </div>
         <div class="form__actions">
-          <button class="button button--primary" type="submit" title= "Click to fetch data">Submit</button>
+          <button class="button button--primary" type="submit"><span class="tooltip-text">Click to fetch data</span>Submit</button>
         </div>
       </form>
 
@@ -58,6 +58,31 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
     .button:hover{
       background-color: #0056b3;
     }
+     .tooltip {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+  }
+
+  .tooltip-text {
+    visibility: hidden;
+    background-color: #555;
+    color: #fff;
+    text-align: center;
+    border-radius: 5px;
+    padding: 5px;
+    position: absolute;
+    z-index: 1;
+    bottom: 125%; /* Position the tooltip */
+    left: 50%;
+    margin-left: -50px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .tooltip:hover .tooltip-text {
+    visibility: visible;
+    opacity: 1;
   `
 })
 export class ChannelRatingByMonthComponent {
