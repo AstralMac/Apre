@@ -1,8 +1,8 @@
 /**
- * Author:
- * Date:
- * File:
- * Description:
+ * Author: Malcolm Abdullah
+ * Date: January 19th, 2025
+ * File: index.js
+ * Description: Monthly Sales API for Apre app
 */
 'use strict';
 
