@@ -28,7 +28,7 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
           </select>
         </div>
         <div class="form__actions">
-          <button class="button button--primary" type="submit"><span class="tooltip-text">Click to fetch data</span>Submit</button>
+          <button class="button button--primary" type="submit"><span class="tooltip-text">Click to fetch data</span>Get Data</button> <!--Change the button from "submit" to "Get Data" for week 4 minor task.-->
         </div>
       </form>
 
