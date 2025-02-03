@@ -83,6 +83,7 @@ import { ReactiveFormsModule, FormBuilder, Validators } from '@angular/forms';
   .tooltip:hover .tooltip-text {
     visibility: visible;
     opacity: 1;
+  }
   `
 })
 export class ChannelRatingByMonthComponent {

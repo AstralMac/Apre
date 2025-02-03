@@ -41,7 +41,7 @@ router.get('/feedback-by-agent', (req, res, next) => {
         },
         {
           $match: {
-            agentId: String(agentId), //Match the Agent ID
+            agentId: parseInt(agentId), //Match the Agent ID
           },
         },
         {
@@ -49,14 +49,7 @@ router.get('/feedback-by-agent', (req, res, next) => {
             _id: {agentId: '$agentId', salesPerson: '$salesperson'},
             customerFeedback: {
               //collect all the needed information for the array
-              $push:{
-                feedbackText: "$feedbackText",
-                feedbackType: "$feedbackType",
-                feedbackSentiment: "$feedbackSentiment",
-                feedbackSource: "$feedbackSource",
-                rating: "$rating"
-              },
-            },
+              $push: '$$ROOT'},
             totalFeedback: {$sum:1}, //get a sum of all feedback entries
             averageRating: {$avg: "$rating"} //get an average of all ratings
           },
@@ -67,21 +60,25 @@ router.get('/feedback-by-agent', (req, res, next) => {
             agentId: "$_id.agentId",
             salesPerson: "$_id.salesPerson",
             customerFeedback: {
-              $reduce: {
+              $map: {
                 input: "$customerFeedback",
-                initialValue: [],
+                as: 'feedback',
                 in: {
-                  $concatArrays: [
-                    '$$value', //Accumulated result
-                    [{$ifNull: ['$$this.feedbackText', '']}], //ensure all need info in array
-                  ],
-                },
-              },
+                  date:'$$feedback.date',
+                  customer: '$$feedback.customer',
+                  product: '$$feedback.product',
+                  feedbackText: '$$feedback.feedbackText',
+                  feedbackType: '$$feedback.feedbackType',
+                  feedbackSentiment: '$$feedback.feedbackSentiment',
+                  feedbackSource: '$$feedback.feedbackSource',
+                  rating: '$$feedback.rating'
+                }
+              }
             },
             totalFeedback: 1,
-            averageRating: 1,
-          },
-        },
+            averageRating: {$round: ['$averageRating',1]},
+          }
+        }
       ]).toArray();
 
       if(!data.length) {
